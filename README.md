@@ -2,19 +2,17 @@
 
 Gem for generate Excel files from Rails views with [write\_xlsx](https://github.com/cxn03651/write_xlsx).
 
+Fork from [write\_xlsx\_rails](https://github.com/maxd/write_xlsx_rails)
+
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'write_xlsx_rails'
+    gem 'write_xlsx_rails', git: 'https://github.com/DatozMX/write_xlsx_rails.git', branch: 'master'
 
 And then execute:
 
     $ bundle
-
-Or install it yourself as:
-
-    $ gem install write_xlsx_rails
 
 ## Usage
 
@@ -40,7 +38,7 @@ If you merely want to specify a file name, you can do it one of two ways:
 
 ```ruby
 format.xlsx {
-	response.headers['Content-Disposition'] = 'attachment; filename="my_new_filename.xlsx"'
+  response.headers['Content-Disposition'] = 'attachment; filename="my_new_filename.xlsx"'
 }
 ```
 
@@ -53,7 +51,7 @@ format.xlsx {
 ```
 
 > NOTE: Someday it would be nice to merely say something like:
-	render :filename, 'blah.xlsx"
+    render :filename, 'blah.xlsx"
 
 ###Template
 
@@ -99,9 +97,10 @@ render partial: 'header', locals: { workbook: workbook }
 
 * [write\_xlsx](http://github.com/cxn03651/write_xlsx)
 
-##Authors
+##Contributors
 
-* [Maxim Dobryakov](https://github.com/maxd)
+* Original author: [Maxim Dobryakov](https://github.com/maxd)
+* [Walter Reyes](https://github.com/walreyes)
 
 ## Contributing
 
