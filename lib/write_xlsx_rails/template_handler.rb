@@ -4,7 +4,14 @@ module WriteXlsxRails
   class WriteXlsxBuilder
 
     def default_format
-      Mime::XLSX
+      case
+      when Rails.version.to_f >= 6
+        Mime[:xlsx].symbol
+      when Rails.version.to_f >= 5
+        Mime[:xlsx]
+      else
+        Mime::XLSX
+      end
     end
 
     def self.call(template)

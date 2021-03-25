@@ -1,7 +1,13 @@
 require 'action_controller'
 
-unless defined? Mime[:xlsx]
-  Mime::Type.register "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", :xlsx
+if Rails.version.to_f >= 5
+  unless Mime[:xlsx]
+  	Mime::Type.register 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', :xlsx
+  end
+else
+  unless defined? Mime::XLSX
+    Mime::Type.register 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', :xlsx
+  end
 end
 
 ActionController::Renderers.add :xlsx do |filename, options|
@@ -23,8 +29,20 @@ ActionController::Renderers.add :xlsx do |filename, options|
 end
 
 # For respond_to default
-class ActionController::Responder
-  def to_xlsx
-    controller.render xlsx: controller.action_name
+begin
+  ActionController::Responder
+rescue
+else
+  class ActionController::Responder
+
+    def to_xlsx
+      @_action_has_layout = false
+      if @default_response
+        @default_response.call(options)
+      else
+        controller.render({xlsx: controller.action_name}.merge(options))
+      end
+    end
+    
   end
 end
