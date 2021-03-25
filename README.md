@@ -8,7 +8,7 @@ Fork from [write\_xlsx\_rails](https://github.com/maxd/write_xlsx_rails)
 
 Add this line to your application's Gemfile:
 
-    gem 'write_xlsx_rails', git: 'https://github.com/DatozMX/write_xlsx_rails.git', branch: 'master'
+    gem 'write_xlsx_rails', git: 'https://github.com/fchampreux/write_xlsx_rails.git', branch: 'master'
 
 And then execute:
 
@@ -114,3 +114,4 @@ render partial: 'header', locals: { workbook: workbook }
 
 * Hideo Nakamura for [write\_xlsx](https://github.com/cxn03651/write_xlsx).
 * Noel Peden for [axlsx](https://github.com/randym/axlsx) and [axlsx\_rails](https://github.com/straydogstudio/axlsx_rails).
+* Luis Mauro
