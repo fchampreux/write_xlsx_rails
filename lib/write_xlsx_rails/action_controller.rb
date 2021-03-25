@@ -27,22 +27,3 @@ ActionController::Renderers.add :xlsx do |filename, options|
 
   send_data render_to_string(options), filename: download_name, type: Mime[:xlsx], disposition: disposition
 end
-
-# For respond_to default
-begin
-  ActionController::Responder
-rescue
-else
-  class ActionController::Responder
-
-    def to_xlsx
-      @_action_has_layout = false
-      if @default_response
-        @default_response.call(options)
-      else
-        controller.render({xlsx: controller.action_name}.merge(options))
-      end
-    end
-    
-  end
-end
